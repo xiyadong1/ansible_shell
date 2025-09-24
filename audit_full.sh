@@ -9,9 +9,9 @@ REPORT_DIR="$ANSIBLE_DIR/report"
 REPORT_FILE="$REPORT_DIR/report.txt"
 
 # 邮件配置
-RECIPIENT="1539513407@qq.com"
-SMTP_USER="1539513407@qq.com"        # 发件邮箱
-SMTP_PASS="snbyfvzxaztebagi"  # QQ邮箱授权码
+RECIPIENT="15395@qq.com"
+SMTP_USER="15395@qq.com"        # 发件邮箱
+SMTP_PASS="snbytebagi"  # QQ邮箱授权码
 SMTP_SERVER="smtp.qq.com"
 SMTP_PORT="587"
 
