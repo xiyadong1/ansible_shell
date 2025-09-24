@@ -1,0 +1,192 @@
+🚀 开始系统巡检...
+🗑️ 旧报告已清理
+
+PLAY [Prepare report directory on controller] **********************************
+
+TASK [删除旧报告目录（如果存在）] **********************************************
+changed: [localhost]
+
+TASK [创建报告目录] ************************************************************
+changed: [localhost]
+
+PLAY [Collect system info on all hosts and produce per-host report] ************
+
+TASK [Gathering Facts] *********************************************************
+ok: [192.168.27.217]
+ok: [192.168.27.214]
+ok: [192.168.27.213]
+ok: [192.168.27.215]
+ok: [192.168.27.212]
+ok: [192.168.27.218]
+
+TASK [安装基础巡检工具（尽量保证有 lscpu/free/sensors）] ***********************
+ok: [192.168.27.214]
+ok: [192.168.27.217]
+ok: [192.168.27.213]
+ok: [192.168.27.215]
+ok: [192.168.27.212]
+ok: [192.168.27.218]
+
+TASK [收集 CPU 信息 (lscpu)] ***************************************************
+changed: [192.168.27.217]
+changed: [192.168.27.214]
+changed: [192.168.27.213]
+changed: [192.168.27.215]
+changed: [192.168.27.212]
+changed: [192.168.27.218]
+
+TASK [收集 内存 信息 (free -h)] ************************************************
+changed: [192.168.27.217]
+changed: [192.168.27.214]
+changed: [192.168.27.213]
+changed: [192.168.27.215]
+changed: [192.168.27.212]
+changed: [192.168.27.218]
+
+TASK [收集 磁盘 信息 (df -hT)] *************************************************
+changed: [192.168.27.214]
+changed: [192.168.27.217]
+changed: [192.168.27.213]
+changed: [192.168.27.215]
+changed: [192.168.27.212]
+changed: [192.168.27.218]
+
+TASK [收集 温度 信息 (sensors) — 可能不存在] ***********************************
+ok: [192.168.27.214]
+ok: [192.168.27.213]
+ok: [192.168.27.217]
+ok: [192.168.27.215]
+ok: [192.168.27.212]
+ok: [192.168.27.218]
+
+TASK [将单主机报告写入 /tmp/192.168.27.212_report.txt] *************************
+changed: [192.168.27.217]
+changed: [192.168.27.214]
+changed: [192.168.27.213]
+changed: [192.168.27.215]
+changed: [192.168.27.212]
+changed: [192.168.27.218]
+
+TASK [将 /tmp/192.168.27.212_report.txt 拉回控制节点的 report 目录] ************
+changed: [192.168.27.217]
+changed: [192.168.27.213]
+changed: [192.168.27.214]
+changed: [192.168.27.215]
+changed: [192.168.27.212]
+changed: [192.168.27.218]
+
+PLAY [Assemble all per-host reports into one file on controller] ***************
+
+TASK [拼接成 /home/ansible/ansible/report/report.txt] **************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+192.168.27.212             : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.27.213             : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.27.214             : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.27.215             : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.27.217             : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.27.218             : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=3    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+✅ 巡检完成，报告生成在 /home/ansible/ansible/report/report.txt
+📧 正在发送邮件到 1107649535@qq.com...
+msmtp: cannot log to /home/ansible/ansible/msmtp.log: cannot open: Permission denied
+msmtp: log info was: host=smtp.qq.com tls=on auth=on user=1107649535@qq.com from=1107649535@qq.com recipients=1107649535@qq.com mailsize=25925 smtpstatus=250 smtpmsg='250 OK: queued as.' exitcode=EX_OK
+✅ 邮件已发送
+🚀 开始系统巡检...
+🗑️ 旧报告已清理
+
+PLAY [Prepare report directory on controller] **********************************
+
+TASK [删除旧报告目录（如果存在）] **********************************************
+changed: [localhost]
+
+TASK [创建报告目录] ************************************************************
+changed: [localhost]
+
+PLAY [Collect system info on all hosts and produce per-host report] ************
+
+TASK [Gathering Facts] *********************************************************
+ok: [192.168.27.214]
+ok: [192.168.27.213]
+ok: [192.168.27.215]
+ok: [192.168.27.217]
+ok: [192.168.27.212]
+ok: [192.168.27.218]
+
+TASK [安装基础巡检工具（尽量保证有 lscpu/free/sensors）] ***********************
+ok: [192.168.27.217]
+ok: [192.168.27.214]
+ok: [192.168.27.213]
+ok: [192.168.27.215]
+ok: [192.168.27.212]
+ok: [192.168.27.218]
+
+TASK [收集 CPU 信息 (lscpu)] ***************************************************
+changed: [192.168.27.217]
+changed: [192.168.27.214]
+changed: [192.168.27.213]
+changed: [192.168.27.212]
+changed: [192.168.27.218]
+changed: [192.168.27.215]
+
+TASK [收集 内存 信息 (free -h)] ************************************************
+changed: [192.168.27.217]
+changed: [192.168.27.213]
+changed: [192.168.27.214]
+changed: [192.168.27.215]
+changed: [192.168.27.212]
+changed: [192.168.27.218]
+
+TASK [收集 磁盘 信息 (df -hT)] *************************************************
+changed: [192.168.27.214]
+changed: [192.168.27.213]
+changed: [192.168.27.217]
+changed: [192.168.27.215]
+changed: [192.168.27.218]
+changed: [192.168.27.212]
+
+TASK [收集 温度 信息 (sensors) — 可能不存在] ***********************************
+ok: [192.168.27.214]
+ok: [192.168.27.217]
+ok: [192.168.27.213]
+ok: [192.168.27.215]
+ok: [192.168.27.212]
+ok: [192.168.27.218]
+
+TASK [将单主机报告写入 /tmp/192.168.27.212_report.txt] *************************
+changed: [192.168.27.217]
+changed: [192.168.27.214]
+changed: [192.168.27.213]
+changed: [192.168.27.215]
+changed: [192.168.27.212]
+changed: [192.168.27.218]
+
+TASK [将 /tmp/192.168.27.212_report.txt 拉回控制节点的 report 目录] ************
+changed: [192.168.27.217]
+changed: [192.168.27.213]
+changed: [192.168.27.214]
+changed: [192.168.27.215]
+changed: [192.168.27.212]
+changed: [192.168.27.218]
+
+PLAY [Assemble all per-host reports into one file on controller] ***************
+
+TASK [拼接成 /home/ansible/ansible/report/report.txt] **************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+192.168.27.212             : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.27.213             : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.27.214             : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.27.215             : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.27.217             : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.27.218             : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=3    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+✅ 巡检完成，报告生成在 /home/ansible/ansible/report/report.txt
+📧 正在发送邮件到 1107649535@qq.com...
+msmtp: cannot log to /home/ansible/ansible/msmtp.log: cannot open: Permission denied
+msmtp: log info was: host=smtp.qq.com tls=on auth=on user=1107649535@qq.com from=1107649535@qq.com recipients=1107649535@qq.com mailsize=25925 smtpstatus=250 smtpmsg='250 OK: queued as.' exitcode=EX_OK
+✅ 邮件已发送

@@ -1,0 +1,74 @@
+===============================
+系统巡检报告 - 192.168.27.213
+巡检时间: 2025-09-24 14:13:05
+主机名: bm1684
+内核: 5.4.217-bm1684-gc1ab88d2690f
+
+=== CPU 信息 (lscpu) ===
+  Architecture:                    aarch64
+    CPU op-mode(s):                  32-bit, 64-bit
+    Byte Order:                      Little Endian
+    CPU(s):                          8
+    On-line CPU(s) list:             0-7
+    Thread(s) per core:              1
+    Core(s) per socket:              4
+    Socket(s):                       2
+    Vendor ID:                       ARM
+    Model:                           4
+    Model name:                      Cortex-A53
+    Stepping:                        r0p4
+    CPU max MHz:                     2300.0000
+    CPU min MHz:                     1150.0000
+    BogoMIPS:                        100.00
+    Vulnerability Itlb multihit:     Not affected
+    Vulnerability L1tf:              Not affected
+    Vulnerability Mds:               Not affected
+    Vulnerability Meltdown:          Not affected
+    Vulnerability Mmio stale data:   Not affected
+    Vulnerability Retbleed:          Not affected
+    Vulnerability Spec store bypass: Not affected
+    Vulnerability Spectre v1:        Mitigation; __user pointer sanitization
+    Vulnerability Spectre v2:        Not affected
+    Vulnerability Srbds:             Not affected
+    Vulnerability Tsx async abort:   Not affected
+    Flags:                           fp asimd evtstrm aes pmull sha1 sha2 crc32 cpuid
+
+=== 内存 (free -h) ===
+                total        used        free      shared  buff/cache   available
+    Mem:          5.5Gi       2.1Gi       3.0Gi        29Mi       494Mi       3.3Gi
+    Swap:            0B          0B          0B
+
+=== 磁盘 (df -hT) ===
+  Filesystem     Type      Size  Used Avail Use% Mounted on
+    overlay        overlay   5.8G  1.5G  4.1G  27% /
+    devtmpfs       devtmpfs  2.8G     0  2.8G   0% /dev
+    tmpfs          tmpfs     2.8G     0  2.8G   0% /dev/shm
+    tmpfs          tmpfs     568M  2.9M  565M   1% /run
+    tmpfs          tmpfs     5.0M     0  5.0M   0% /run/lock
+    tmpfs          tmpfs     2.8G     0  2.8G   0% /sys/fs/cgroup
+    /dev/mmcblk0p1 vfat      128M   89M   39M  70% /boot
+    /dev/mmcblk0p7 ext4       15G   55M   15G   1% /data
+    /dev/mmcblk0p4 ext4      2.4G  2.2G  157M  94% /media/root-ro
+    /dev/mmcblk0p5 ext4      5.8G  1.5G  4.1G  27% /media/root-rw
+    /dev/mmcblk0p6 ext4      2.0G  226M  1.6G  13% /opt
+    /dev/mmcblk0p2 ext4      2.9G   52M  2.8G   2% /recovery
+    /dev/sda1      ext4      1.8T   74G  1.7T   5% /data/microservice
+    overlay        overlay   1.8T   74G  1.7T   5% /data/microservice/docker/overlay2/946226312ef34c1270e18c22273b8337ea7815807f459840cf83964bd5a36de8/merged
+    overlay        overlay   1.8T   74G  1.7T   5% /data/microservice/docker/overlay2/3906b0e51ab883bf616b266c9fc23a43f190211824a331c2e3a1bb4c2d0030d4/merged
+    overlay        overlay   1.8T   74G  1.7T   5% /data/microservice/docker/overlay2/7e1981e4c5029be9a51d75fcc24a0dc72c888348b5f527a2f88cb983c803191b/merged
+    overlay        overlay   1.8T   74G  1.7T   5% /data/microservice/docker/overlay2/8f4fdbfbb6ab4d436acaf7cc54918546dd14cc6f5d70e44ef720c45356bc0655/merged
+    overlay        overlay   1.8T   74G  1.7T   5% /data/microservice/docker/overlay2/803fa0a3ed3c4ae974d404d8d569fe57c30d33de65464ccbc8603e5e3455c785/merged
+    overlay        overlay   1.8T   74G  1.7T   5% /data/microservice/docker/overlay2/b43d17c6b65174fb7ea90443812585ef1a96ea0398431803c290f1604069f84d/merged
+    overlay        overlay   1.8T   74G  1.7T   5% /data/microservice/docker/overlay2/59efadf22d6ff6f49d2ea319f341db2395b4ff3e4007fd80bf525d1632012030/merged
+    overlay        overlay   1.8T   74G  1.7T   5% /data/microservice/docker/overlay2/d4f67c69cbe776023e57432895cf9f19b4208d47b28a8dfc56ed8d0dba76a37f/merged
+    tmpfs          tmpfs     568M     0  568M   0% /run/user/1000
+
+=== 温度 (sensors) ===
+  tmp451-i2c-1-6b
+    Adapter: Synopsys DesignWare I2C adapter
+    temp1:        +35.0°C  (low  = -64.0°C, high = +21.0°C)
+                           (crit = +21.0°C, hyst = +11.0°C)
+    temp2:        +38.0°C  (low  = -64.0°C, high = +21.0°C)
+                           (crit = +44.0°C, hyst = +34.0°C)
+
+===============================

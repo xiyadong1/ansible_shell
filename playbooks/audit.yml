@@ -1,0 +1,102 @@
+---
+# ===================================================
+# 系统巡检 playbook（TXT 汇总版，仅生成报告，不发送邮件）
+# 目录 /home/ansible/ansible/report/ 下会生成单主机文件和合并文件 report.txt
+# ===================================================
+
+# 0) 准备控制节点的 report 目录（先删除旧的，保证干净）
+- name: Prepare report directory on controller
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: 删除旧报告目录（如果存在）
+      file:
+        path: /home/ansible/ansible/report
+        state: absent
+
+    - name: 创建报告目录
+      file:
+        path: /home/ansible/ansible/report
+        state: directory
+        mode: '0755'
+
+# 1) 在所有被控主机上收集信息并在每台主机上生成 /tmp/<host>_report.txt，随后 fetch 到控制节点
+- name: Collect system info on all hosts and produce per-host report
+  hosts: myhosts
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: 安装基础巡检工具（尽量保证有 lscpu/free/sensors）
+      package:
+        name:
+          - procps      # free、uptime
+          - util-linux  # lscpu
+          - lm-sensors  # sensors
+        state: present
+      ignore_errors: yes
+
+    - name: 收集 CPU 信息 (lscpu)
+      command: lscpu
+      register: cpu_res
+      failed_when: false
+
+    - name: 收集 内存 信息 (free -h)
+      command: free -h
+      register: mem_res
+      failed_when: false
+
+    - name: 收集 磁盘 信息 (df -hT)
+      command: df -hT
+      register: disk_res
+      failed_when: false
+
+    - name: 收集 温度 信息 (sensors) — 可能不存在
+      command: sensors
+      register: sensors_res
+      failed_when: false
+      changed_when: false
+
+    - name: 将单主机报告写入 /tmp/{{ inventory_hostname }}_report.txt
+      copy:
+        dest: "/tmp/{{ inventory_hostname }}_report.txt"
+        mode: '0644'
+        force: yes
+        content: |
+          ===============================
+          系统巡检报告 - {{ inventory_hostname }}
+          巡检时间: {{ ansible_date_time.date }} {{ ansible_date_time.time }}
+          主机名: {{ ansible_hostname }}
+          内核: {{ ansible_kernel }}
+
+          === CPU 信息 (lscpu) ===
+            {{ cpu_res.stdout | default('N/A') | indent(4) }}
+
+          === 内存 (free -h) ===
+            {{ mem_res.stdout | default('N/A') | indent(4) }}
+
+          === 磁盘 (df -hT) ===
+            {{ disk_res.stdout | default('N/A') | indent(4) }}
+
+          === 温度 (sensors) ===
+            {{ sensors_res.stdout | default('N/A') | indent(4) }}
+
+          ===============================
+      # 注意：Jinja 表达式都缩进到块内，避免 YAML 解析问题
+
+    - name: 将 /tmp/{{ inventory_hostname }}_report.txt 拉回控制节点的 report 目录
+      fetch:
+        src: "/tmp/{{ inventory_hostname }}_report.txt"
+        dest: "/home/ansible/ansible/report/"
+        flat: yes
+
+# 2) 在控制节点将所有单主机文件拼接成一份总报告 report.txt
+- name: Assemble all per-host reports into one file on controller
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: 拼接成 /home/ansible/ansible/report/report.txt
+      assemble:
+        src: /home/ansible/ansible/report/
+        dest: /home/ansible/ansible/report/report.txt
+        delimiter: "\n\n===============================\n\n"
+
