@@ -1,5 +1,5 @@
 1️⃣ 控制节点准备老套路：切到 root更新系统安装 Ansible生成 SSH 密钥分发密钥到被控主机核心：控制节点与被控主机免密打通。如果这一步没搞好，后续操作都无法执行。💡 Tip：可以用 for in 循环批量分发密钥到各主机。
-http://pic.opsdev.top/pic/640
+![图片](http://pic.opsdev.top/pic/640)
 
 for in 循环分发密钥到控制主机
 2️⃣ 主机环境设置用户名：ansible（演示用，生产环境请使用正规用户名，哈哈）环境目录：/home/ansible/在 ansible 文件目录下新建 hosts.ini，写明所有要巡检的服务器 IP。巡检 Playbook：audit.yml，放在 playbooks/ 目录下。
